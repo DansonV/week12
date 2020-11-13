@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>Week 12 In-class: Survivor</title>
+	</head>
+	<body>
+		<h1>Survivor</h1>
+		
+		<button id = "remove">Remove</button>
+		
+		<p>Remaining:</p>
+		<ul id = "remaining"></ul>
+		
+		<p>Removed: </p>
+		<ul id = "removed"></ul>
+		
+		
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		
+		<script>
+			$(document).ready(function() {
+				var removeButton = $("#remove");
+				var remainingList = $("#remaining");
+				var removedList = $("#removedList");
+				
+				var remainingStudents = ["Danson", "Christopher", "Thomas", "Jeffrey", "Baylee", "Mika", "Ben", "Dom"];
+				var removedStudents = [];
+				
+				$(removeButton).click(eliminateStudent);
+				
+				function displayRemainingStudents(students) {
+					$(remainingList).empty();
+					$(students).each(function() {
+						// "this" will reference the student we are looping over
+						$(remainingList).append("<li>" + this + "</li>");
+					});
+				};
+				
+				function displayRemovedStudents(students) {
+					$(students).each(function() {
+						// "this" will reference the student we are looping over
+						$(removedList).empty().append("<li>" + this + "</li>");
+					});
+				};
+				
+				function eliminateStudent() {
+					if(remainingStudents.length <= 0) {
+						alert("Not enough students!");
+						
+						// stops rest of function from running
+						return;	
+					}
+				
+					var randomIndex = Math.floor(Math.random() * remainingStudents.length - 1);
+					
+					// splice returns the removed elements & fills in the gap from the removed elements
+					var removedStudent = remainingStudents.splice(randomIndex, 1);
+					console.log(removedStudent);
+					console.log(remainingStudents);
+					console.log(removedStudents);
+					
+					removedStudents.push(removedStudent[0]);
+					
+					displayRemainingStudents(remainingStudents);
+					displayRemovedStudents(removedStudents);
+				};
+				
+				displayRemainingStudents(remainingStudents);
+			});
+						
+		</script>
+
+
+	</body>
+</html>

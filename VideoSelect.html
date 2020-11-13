@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>Week 12 In-class: Video Select</title>
+	</head>
+	<body>
+		<h1>Video Select</h1>
+		
+		<div id = "list"></div>
+		
+		<script>
+			var listDiv = document.getElementById("list");
+			var movies = ["nZBJnSvGAf0","z6EchXyieos","gCAYhUkKUjU"];
+			
+			movies.forEach(function(movie) {
+				console.log("Movie code: " + movie);
+				
+				// first part of query string parameters
+				listDiv.innerHTML += `<p>Watch <a href = "VideoView.html?code=${movie}">${movie}</a></p>`;
+			});
+		</script>
+	</body>
+</html>

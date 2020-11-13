@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>Week 12 In-class: Video View</title>
+	</head>
+	<body>
+		<h1>Video View</h1>
+		
+		<iframe id = "youtube" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		
+		<script>
+			var iframe = document.getElementById("youtube");
+			var youtube_src = "https://www.youtube.com/embed/";
+			
+			var query_parameters = new URLSearchParams(window.location.search);
+			alert(query_parameters.get("code"));
+			
+			youtube_src += query_parameters.get("code");
+			
+			iframe.src = youtube_src;
+		</script>
+	</body>
+</html>

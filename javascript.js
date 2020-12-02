@@ -18,9 +18,6 @@ $("form").submit(function(event) {
 	// stores data
 	saveDataToLocalStorage(dataObject);
 				
-	// displays data
-	displayDataOnPage();
-				
 });
 			
 function condenseData(formData) {
@@ -43,7 +40,7 @@ function saveDataToLocalStorage(dataObject) {
 				
 	// if dataArray does not exist, then one is created
 	if(!dataArray) {
-		dataArray = ["United States", "Canada", "Mexico"];
+		dataArray = [];
 	};
 				
 	dataArray.push(dataObject);
@@ -51,16 +48,7 @@ function saveDataToLocalStorage(dataObject) {
 	localStorage.setItem("data", JSON.stringify(dataArray));
 };
 			
-function displayDataOnPage() {
-	var data = JSON.parse(localStorage.getItem("data"));
-				
-	// update page with data from localStorage
-	$(data).each(function() {
-		$("#data").append(`<p>${this.input1} - ${this.input2} - ${this.input3}</p>`);
-	});
-};
-			
-displayDataOnPage();
+
 
 // *** CRUD Part 2 ***
 // Editing Users
@@ -74,18 +62,31 @@ localStorageDataArray.forEach(function(localStorageData) {
 	localStorageDataArray.push(localStorageData);
 });
 
-$("input:text").val(localStorageDataArray);
+$("#input1").val(localStorageDataArray[0]);
+$("#input2").val(localStorageDataArray[1]);
+$("#input3").val(localStorageDataArray[2]);
+
+
 
 // Deleting Users
-$("deleteDataField1").click(deleteItem(0));
-$("deleteDataField2").click(deleteItem(1));
-$("deleteDataField3").click(deleteItem(2));
+$("deleteDataField1").click(deleteItem1);
+$("deleteDataField2").click(deleteItem2);
+$("deleteDataField3").click(deleteItem3);
 
-function deleteItem(index) {
-	var dataSpliced = dataArray.splice(index,1);
+function deleteItem1() {
+	var dataSpliced = dataArray.splice(0,1);
 	
-	localStorage.setItem("data", dataSpliced);
+	localStorage.setItem("data0", dataSpliced);
+};
+
+function deleteItem2() {
+	var dataSpliced = dataArray.splice(1,1);
 	
-	displayDataOnPage();
+	localStorage.setItem("data1", dataSpliced);
+};
+
+function deleteItem3() {
+	var dataSpliced = dataArray.splice(2,1);
 	
+	localStorage.setItem("data2", dataSpliced);
 };
